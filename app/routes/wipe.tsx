@@ -30,6 +30,8 @@ const WipeApp = () => {
         loadFiles();
     };
 
+    const userDisplayName = auth.user?.name || auth.user?.displayName || auth.user?.username;
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -40,7 +42,7 @@ const WipeApp = () => {
 
     return (
         <div>
-            Authenticated as: {auth.user?.username}
+            Authenticated as: {userDisplayName}
             <div>Existing files:</div>
             <div className="flex flex-col gap-4">
                 {files.map((file) => (

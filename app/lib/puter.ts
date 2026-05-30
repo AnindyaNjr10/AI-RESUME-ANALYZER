@@ -349,18 +349,8 @@ export const usePuterStore = create<PuterStore>((set, get) => {
                         },
                     ],
                 },
-            ],
-            { model: "claude-3-7-sonnet" }
+            ]
         ) as Promise<AIResponse | undefined>;
-    };
-
-    const img2txt = async (image: string | File | Blob, testMode?: boolean) => {
-        const puter = getPuter();
-        if (!puter) {
-            setError("Puter.js not available");
-            return;
-        }
-        return puter.ai.img2txt(image, testMode);
     };
 
     const getKV = async (key: string) => {
@@ -388,6 +378,15 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             return;
         }
         return puter.kv.delete(key);
+    };
+
+    const img2txt = async (image: string | File | Blob, testMode?: boolean) => {
+        const puter = getPuter();
+        if (!puter) {
+            setError("Puter.js not available");
+            return;
+        }
+        return puter.ai.img2txt(image, testMode);
     };
 
     const listKV = async (pattern: string, returnValues?: boolean) => {
